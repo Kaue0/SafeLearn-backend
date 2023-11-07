@@ -24,6 +24,12 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
+        String requestURI = httpServletRequest.getRequestURI();
+        if (requestURI.startsWith("/users")) {
+            filterChain.doFilter(httpServletRequest, httpServletResponse);
+            return;
+        }
+
         var tokenJWT = retrieveToken(httpServletRequest);
         if (tokenJWT != null) {
             var subject = tokenService.getSubject(tokenJWT);
