@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:${DATABASE_URL:postgresql://@safelearn-backend.railway.internal:5432/railway?user=postgres&password=GdADGf*2BcdC1143cDBb-dFgedcba43d}
+    url: jdbc:${DATABASE_URL:postgresql://@monorail.proxy.rlwy.net:21428/railway?user=postgres&password=GdADGf*2BcdC1143cDBb-dFgedcba43d}
     username: postgres
     password: ${PGPASSWORD:GdADGf*2BcdC1143cDBb-dFgedcba43d}
     driver-class-name: org.postgresql.Driver
