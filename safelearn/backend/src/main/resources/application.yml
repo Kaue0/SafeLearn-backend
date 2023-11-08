@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:${DATABASE_URL:postgresql://@safelearn-backend.railway.internal:5432/railway?user=postgres&password=GdADGf*2BcdC1143cDBb-dFgedcba43d}
     username: postgres
-    password: ${PGPASSWORD}
+    password: ${PGPASSWORD:GdADGf*2BcdC1143cDBb-dFgedcba43d}
     driver-class-name: org.postgresql.Driver
   flyway:
     baseline-on-migrate: true
