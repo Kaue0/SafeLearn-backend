@@ -28,6 +28,7 @@ public class SecurityConfiguration {
                 .disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/register").permitAll()
+                .requestMatchers(HttpMethod.GET, "*").permitAll()
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
                 .requestMatchers(HttpMethod.PUT, "/reactivate").permitAll()
                 .anyRequest().authenticated()
