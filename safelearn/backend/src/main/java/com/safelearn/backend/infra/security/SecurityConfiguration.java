@@ -31,6 +31,10 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.GET, "*").permitAll()
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
                 .requestMatchers(HttpMethod.PUT, "/reactivate").permitAll()
+                .requestMatchers(HttpMethod.GET, "/users/*").permitAll()
+                .requestMatchers(HttpMethod.POST, "/users/*").permitAll()
+                .requestMatchers(HttpMethod.PUT, "/users/*").permitAll()
+                .requestMatchers(HttpMethod.DELETE, "/users/*").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
