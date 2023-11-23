@@ -16,9 +16,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/{username}")
-    public ResponseEntity userPage(@PathVariable String username, @RequestParam(required = false) Long loggedInUserId) {
-        return userService.detailUser(username, loggedInUserId);
+    @GetMapping("/{id}")
+    public ResponseEntity userPageById(@PathVariable String id, @RequestParam(required = false) Long loggedInUserId) {
+        return userService.detailUserById(id, loggedInUserId);
     }
 
     @PutMapping("/{id}")

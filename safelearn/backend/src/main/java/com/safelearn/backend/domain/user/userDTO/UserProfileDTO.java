@@ -9,6 +9,8 @@ public record UserProfileDTO(
 
         String username,
 
+        String email,
+
         String phone,
 
         String photo_link,
@@ -28,6 +30,7 @@ public record UserProfileDTO(
                 user.getId(),
                 user.getName(),
                 user.getUsername(),
+                user.getEmail(),
                 user.getPhone(),
                 user.getPhoto_link(),
                 user.getDescription(),

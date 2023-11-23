@@ -46,6 +46,28 @@ public class UserService {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    public ResponseEntity detailUserById(String id, Long loggedInUserId) {
+        User user = userRepository.findById(id);
+        if (user == null) return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
+        if (user.getDeleted()) return ResponseEntity.status(HttpStatus.GONE).body("User got deleted");
+        int friendCount = user.getFriends().size();
+
+        boolean friends = false;
+        if (loggedInUserId != null) {
+            User loggedInUser = userRepository.findById(loggedInUserId).orElse(null);
+            if (loggedInUser != null) {
+                friends = loggedInUser.getFriends().contains(user);
+            }
+        }
+
+        UserProfileDTO userProfile = new UserProfileDTO(user, friendCount, friends);
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("user", userProfile);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
     public ResponseEntity<?> updateUser(UpdateUserDTO dto, Long id, Authentication authentication) {
 
         Optional<User> tempUser = userRepository.findById(id);
