@@ -68,15 +68,13 @@ public class UserService {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    public ResponseEntity<?> updateUser(UpdateUserDTO dto, Long id, Authentication authentication) {
+    public ResponseEntity<?> updateUser(UpdateUserDTO dto, Long id) {
 
         Optional<User> tempUser = userRepository.findById(id);
         if (tempUser.isEmpty()) {return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");}
         User user = tempUser.get();
 
         if (user.getDeleted()) {return ResponseEntity.status(HttpStatus.GONE).body("User got deleted.");}
-
-        if (!((User) authentication.getPrincipal()).getId().equals(user.getId())) {return ResponseEntity.status(HttpStatus.FORBIDDEN).body("User not authorized.");}
 
         if ((!Objects.equals(dto.username(), user.getUsername())) && userRepository.existsByUsername(dto.username())) {
             return ResponseEntity.badRequest().body("Username already exists.");

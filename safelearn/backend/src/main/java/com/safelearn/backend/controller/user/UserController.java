@@ -23,8 +23,8 @@ public class UserController {
 
     @PutMapping("/{id}")
     @Transactional
-    public ResponseEntity updateUser(@RequestBody @Valid UpdateUserDTO dto, @PathVariable Long id, Authentication authentication) {
-        return userService.updateUser(dto, id, authentication);
+    public ResponseEntity updateUser(@RequestBody @Valid UpdateUserDTO dto, @PathVariable Long id) {
+        return userService.updateUser(dto, id);
     }
 
     @GetMapping("/update/{id}")
